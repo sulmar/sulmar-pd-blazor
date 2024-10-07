@@ -1,8 +1,6 @@
 @page "/tickets"
 @using Domain.Abstractions
 @using Domain.Models
-@inject ITicketRepository repository
-
 
 <h3>Hello Tickets!</h3>
 
@@ -15,17 +13,3 @@
     }
 </ul>
 
-@code {
-    string title = "Tickets";
-
-    IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();
-        
-
-    protected override void OnInitialized()
-    {
-        // TODO: Pobierz z repozytorium
-        tickets = repository.GetAll();
-    }
-     
-
-}
