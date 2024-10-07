@@ -1,5 +1,7 @@
 @page "/tickets"
+@using Domain.Abstractions
 @using Domain.Models
+@inject ITicketRepository repository
 
 
 <h3>Hello Tickets!</h3>
@@ -17,18 +19,12 @@
     string title = "Tickets";
 
     IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();
+        
 
     protected override void OnInitialized()
     {
         // TODO: Pobierz z repozytorium
-        tickets = new List<Ticket>
-        {
-            new Ticket { Id = 1, Title = "Lorem"},
-            new Ticket { Id = 2, Title = "Ipsum"},
-            new Ticket { Id = 3, Title = "Deres"},
-            new Ticket { Id = 4, Title = "Veto"},
-            new Ticket { Id = 5, Title = "Alfa"},
-        };
+        tickets = repository.GetAll();
     }
      
 

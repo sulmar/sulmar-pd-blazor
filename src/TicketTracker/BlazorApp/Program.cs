@@ -1,9 +1,12 @@
 using BlazorApp.Components;
+using Domain.Abstractions;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
+builder.Services.AddScoped<ITicketRepository, FakeTicketRepository>();
 
 var app = builder.Build();
 
