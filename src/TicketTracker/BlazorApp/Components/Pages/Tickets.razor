@@ -1,0 +1,35 @@
+@page "/tickets"
+@using Domain.Models
+
+
+<h3>Hello Tickets!</h3>
+
+<p>Jestes na stronie @title</p>
+
+<ul>
+    @foreach(var ticket in tickets)
+    {
+        <li>@ticket.Id @ticket.Title</li>
+    }
+</ul>
+
+@code {
+    string title = "Tickets";
+
+    IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();
+
+    protected override void OnInitialized()
+    {
+        // TODO: Pobierz z repozytorium
+        tickets = new List<Ticket>
+        {
+            new Ticket { Id = 1, Title = "Lorem"},
+            new Ticket { Id = 2, Title = "Ipsum"},
+            new Ticket { Id = 3, Title = "Deres"},
+            new Ticket { Id = 4, Title = "Veto"},
+            new Ticket { Id = 5, Title = "Alfa"},
+        };
+    }
+     
+
+}
