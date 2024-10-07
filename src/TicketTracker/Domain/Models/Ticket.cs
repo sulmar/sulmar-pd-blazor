@@ -1,6 +1,20 @@
 namespace Domain.Models;
 
-public class Ticket : BaseEntity
+public class User : BaseEntity
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+public class TicketSearchCriteria  : Base
+{
+     public string? Title { get; set; }
+    public string? Description { get; set; }
+     public TicketStatus? Status { get; set; }
+     public DateTime? From { get; set; }
+     public DateTime? To { get; set; }
+}
+
+public partial class Ticket : BaseEntity
 {   
     public string Title { get; set; }
     public string Description { get; set; }

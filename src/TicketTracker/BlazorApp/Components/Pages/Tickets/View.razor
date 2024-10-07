@@ -1,0 +1,18 @@
+﻿@page "/tickets/{id:int}"
+@using Domain.Abstractions
+@using Domain.Models
+@inject ITicketRepository repository
+
+<h3>View # @Id</h3>
+
+@code {
+
+    [Parameter]
+    public int Id {get; set; }
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine(Id);
+    }
+}
+ 
+    using Domain.Abstractions;

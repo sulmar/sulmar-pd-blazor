@@ -5,6 +5,16 @@ namespace Infrastructure;
 
 public class FakeTicketRepository : ITicketRepository
 {
+    public IEnumerable<Ticket> Get(TicketSearchCriteria searchCriteria)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Ticket Get(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public IEnumerable<Ticket> GetAll()
     {
         return new List<Ticket>

@@ -3,9 +3,9 @@ using Domain.Abstractions;
 using Domain.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorApp.Components.Pages;
+namespace BlazorApp.Components.Pages.Tickets;
 
-public partial class Tickets
+public partial class List
 {
      string title = "Tickets";
 
