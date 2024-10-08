@@ -1,28 +1,9 @@
 @page "/archive"
 @inject ITicketRepository repository
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Created By</th>
-        </tr>
+<h3>Archive</h3>
 
-    </thead>
-    <tbody>
-        @foreach(var ticket in tickets)
-        {
-            <tr>
-                <td>@ticket.Title</td>
-                <td>@ticket.Status</td>
-                <td>@ticket.CreatedBy</td>
-            </tr>
-        }
-    </tbody>
-    <tfoot>
-    </tfoot>
-</table>
+<TicketTableTemplate Tickets="@tickets" />
 
 @code {
     private IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();

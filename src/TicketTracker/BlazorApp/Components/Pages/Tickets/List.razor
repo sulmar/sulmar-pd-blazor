@@ -5,26 +5,6 @@
 
 <p>Jestes na stronie @title</p>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Created By</th>
-        </tr>
+<TicketTableTemplate Tickets="@tickets" />
 
-    </thead>
-    <tbody>
-        @foreach(var ticket in tickets)
-        {
-            <tr>
-                <td>@ticket.Title</td>
-                <td>@ticket.Status</td>
-                <td>@ticket.CreatedBy</td>
-            </tr>
-        }
-    </tbody>
-    <tfoot>
-    </tfoot>
-</table>
 

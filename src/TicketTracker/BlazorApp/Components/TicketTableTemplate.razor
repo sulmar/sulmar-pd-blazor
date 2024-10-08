@@ -1,0 +1,29 @@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Created By</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var ticket in Tickets)
+        {
+            <tr>
+                <td>@ticket.Title</td>
+                <td>@ticket.Status</td>
+                <td>@ticket.CreatedBy</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+
+@code  {
+
+    [Parameter, EditorRequired]
+    public required IEnumerable<Ticket> Tickets { get; set; }
+}
