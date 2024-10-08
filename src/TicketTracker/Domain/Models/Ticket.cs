@@ -1,10 +1,4 @@
 namespace Domain.Models;
-
-public class User : BaseEntity
-{
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
 public class TicketSearchCriteria  : Base
 {
      public string? Title { get; set; }
