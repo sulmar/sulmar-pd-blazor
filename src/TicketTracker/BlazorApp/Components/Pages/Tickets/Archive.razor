@@ -1,9 +1,5 @@
-@page "/tickets"
-@using Domain.Abstractions
-
-<h3>Hello Tickets!</h3>
-
-<p>Jestes na stronie @title</p>
+@page "/archive"
+@inject ITicketRepository repository
 
 <table class="table table-striped">
     <thead>
@@ -28,3 +24,12 @@
     </tfoot>
 </table>
 
+@code {
+    private IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();
+
+    protected override void OnInitialized()
+    {
+        tickets = repository.GetAll();
+    } 
+    
+}
