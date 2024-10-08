@@ -6,9 +6,18 @@
 <p>Jestes na stronie @title</p>
 
 <TicketTableTemplate Tickets="@tickets" >
-    <th>Title</th>
-    <th>Status</th>
-    <th>Created By</th>
+
+    <HeaderTemplate>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Created By</th>
+    </HeaderTemplate>
+   
+    <RowTemplate>
+        <td>@context.Title</td>
+        <td>@context.Status</td>
+        <td>@context.CreatedBy</td>
+</RowTemplate>
 </TicketTableTemplate>
 
 

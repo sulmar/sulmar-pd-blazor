@@ -3,7 +3,15 @@
 
 <h3>Archive</h3>
 
-<TicketTableTemplate Tickets="@tickets" />
+<TicketTableTemplate Tickets="@tickets">
+
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.Title</td>
+        <td>@context.Status</td>
+        <td>@context.CreatedBy</td>
+    </RowTemplate>
+</TicketTableTemplate>
 
 @code {
     private IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();

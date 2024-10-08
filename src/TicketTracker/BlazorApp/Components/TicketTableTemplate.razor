@@ -1,11 +1,11 @@
 
 <table class="table table-striped">
     
-    @if(ChildContent is not null)
+    @if(HeaderTemplate is not null)
     {
         <thead>
             <tr>
-                @ChildContent                
+                @HeaderTemplate                
             </tr>
 
         </thead>
@@ -15,9 +15,8 @@
         @foreach(var ticket in Tickets)
         {
             <tr>
-                <td>@ticket.Title</td>
-                <td>@ticket.Status</td>
-                <td>@ticket.CreatedBy</td>
+                @RowTemplate(ticket)
+             
             </tr>
         }
     </tbody>
@@ -31,5 +30,8 @@
     public required IEnumerable<Ticket> Tickets { get; set; }
 
     [Parameter]
-    public RenderFragment? ChildContent { get; set; } 
+    public RenderFragment? HeaderTemplate { get; set; } 
+
+    [Parameter]
+    public RenderFragment<Ticket> RowTemplate { get; set; }
 }
