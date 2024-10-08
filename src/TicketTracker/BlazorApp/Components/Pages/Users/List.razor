@@ -1,3 +1,23 @@
 @page "/users"
+@inject IUserRepository repository
+
 
 <h3>Users</h3>
+
+<EntityTableTemplate Entities="@users">
+    <RowTemplate Context="user">
+        <td>@user.FirstName</td>
+        <td>@user.LastName</td>
+    </RowTemplate>
+</EntityTableTemplate>
+
+@code {
+
+    private IEnumerable<User> users;
+
+    protected override void OnInitialized()
+    {
+        users = repository.GetAll();
+    }
+
+}

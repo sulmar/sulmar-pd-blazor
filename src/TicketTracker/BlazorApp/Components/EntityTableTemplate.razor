@@ -1,0 +1,38 @@
+@typeparam TEntity
+
+<table class="table table-striped">
+    
+    @if(HeaderTemplate is not null)
+    {
+        <thead>
+            <tr>
+                @HeaderTemplate                
+            </tr>
+
+        </thead>
+    }
+
+    <tbody>
+        @foreach(var entity in Entities)
+        {
+            <tr>
+                @RowTemplate(entity)
+             
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+
+@code  {
+
+    [Parameter, EditorRequired]
+    public required IEnumerable<TEntity> Entities { get; set; }
+
+    [Parameter]
+    public RenderFragment? HeaderTemplate { get; set; } 
+
+    [Parameter]
+    public RenderFragment<TEntity> RowTemplate { get; set; }
+}

@@ -5,19 +5,32 @@
 
 <p>Jestes na stronie @title</p>
 
-<TicketTableTemplate Tickets="@tickets" >
+<EntityTableTemplate Entities="@tickets" >
 
     <HeaderTemplate>
         <th>Title</th>
         <th>Status</th>
         <th>Created By</th>
+        <th></th>
     </HeaderTemplate>
    
     <RowTemplate>
         <td>@context.Title</td>
         <td>@context.Status</td>
         <td>@context.CreatedBy</td>
+        <td>
+            <a class="btn btn-primary" href="/tickets/@context.Id">View</a>
+            <button class="btn btn-danger" @onclick=@(()=>Console.WriteLine("a"))>Delete</button>
+        </td>
 </RowTemplate>
-</TicketTableTemplate>
+</EntityTableTemplate>
 
+@code {
+
+
+    public void Delete()
+    {
+        Console.WriteLine("Deleted!");
+    }
+}
 

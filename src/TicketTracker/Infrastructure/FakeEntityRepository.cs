@@ -6,20 +6,11 @@ namespace Infrastructure;
 public class FakeEntityRepository<TEntity> : IEntityRepository<TEntity>
     where TEntity : BaseEntity
 {
-    private readonly IEnumerable<TEntity> entities;
+    protected readonly IEnumerable<TEntity> entities;
 
-    public FakeEntityRepository(IEnumerable<TEntity> entities)
-    {
-        this.entities = entities;
-    }
+    public FakeEntityRepository(IEnumerable<TEntity> entities) => this.entities = entities;
 
-    public TEntity Get(int id)
-    {
-        return entities.SingleOrDefault(e => e.Id == id);
-    }
+    public TEntity Get(int id) => entities.SingleOrDefault(e => e.Id == id);
 
-    public IEnumerable<TEntity> GetAll()
-    {
-        return entities;
-    }
+    public IEnumerable<TEntity> GetAll() => entities;
 }
