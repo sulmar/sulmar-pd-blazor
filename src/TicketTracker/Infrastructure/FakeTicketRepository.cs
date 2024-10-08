@@ -19,11 +19,11 @@ public class FakeTicketRepository : ITicketRepository
     {
         return new List<Ticket>
         {
-            new Ticket { Id = 1, Title = "Lorem"},
-            new Ticket { Id = 2, Title = "Ipsum"},
-            new Ticket { Id = 3, Title = "Deres"},
-            new Ticket { Id = 4, Title = "Veto"},
-            new Ticket { Id = 5, Title = "Alfa"},
+            new Ticket { Id = 1, Title = "Lorem", CreatedBy = "John"},
+            new Ticket { Id = 2, Title = "Ipsum", CreatedBy = "Adam"},
+            new Ticket { Id = 3, Title = "Deres", CreatedBy = "Kate" },
+            new Ticket { Id = 4, Title = "Veto", CreatedBy = "Bob" },
+            new Ticket { Id = 5, Title = "Alfa", CreatedBy = "John" },
         };
     }
 }
