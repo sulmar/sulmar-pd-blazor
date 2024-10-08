@@ -3,8 +3,27 @@ using Domain.Models;
 
 namespace Infrastructure;
 
+public class FakeUserRepository : IUserRepository
+{
+    public User Get(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<User> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+}
+
 public class FakeTicketRepository : ITicketRepository
 {
+    private readonly IEnumerable<Ticket> tickets;
+
+    public FakeTicketRepository(IEnumerable<Ticket> tickets)
+    {
+        this.tickets = tickets; 
+    }
     public IEnumerable<Ticket> Get(TicketSearchCriteria searchCriteria)
     {
         throw new NotImplementedException();
@@ -12,18 +31,11 @@ public class FakeTicketRepository : ITicketRepository
 
     public Ticket Get(int id)
     {
-        throw new NotImplementedException();
+        return tickets.SingleOrDefault(t => t.Id == id);
     }
 
     public IEnumerable<Ticket> GetAll()
     {
-        return new List<Ticket>
-        {
-            new Ticket { Id = 1, Title = "Lorem", CreatedBy = "John"},
-            new Ticket { Id = 2, Title = "Ipsum", CreatedBy = "Adam"},
-            new Ticket { Id = 3, Title = "Deres", CreatedBy = "Kate" },
-            new Ticket { Id = 4, Title = "Veto", CreatedBy = "Bob" },
-            new Ticket { Id = 5, Title = "Alfa", CreatedBy = "John" },
-        };
+        return tickets;        
     }
 }
