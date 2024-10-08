@@ -18,6 +18,14 @@ builder.Services.AddScoped<IEnumerable<Ticket>>(_ => new List<Ticket>
             new Ticket { Id = 5, Title = "Alfa", CreatedBy = "John" },
         });
 
+builder.Services.AddScoped<IUserRepository, FakeUserRepository>();
+builder.Services.AddScoped<IEnumerable<User>>(_ => new List<User>
+{
+    new User { Id = 1, FirstName = "John", LastName = "Smith"},
+    new User { Id = 2, FirstName = "Kate", LastName = "Smith"},
+    new User { Id = 3, FirstName = "Bob", LastName = "Smith"},    
+});      
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,5 +42,8 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>();
+
+
+app.MapGet("/api/users", (IUserRepository repository) => repository.GetAll() );
 
 app.Run();
