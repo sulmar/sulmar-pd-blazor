@@ -1,13 +1,16 @@
 
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Created By</th>
-        </tr>
+    
+    @if(ChildContent is not null)
+    {
+        <thead>
+            <tr>
+                @ChildContent                
+            </tr>
 
-    </thead>
+        </thead>
+    }
+
     <tbody>
         @foreach(var ticket in Tickets)
         {
@@ -26,4 +29,7 @@
 
     [Parameter, EditorRequired]
     public required IEnumerable<Ticket> Tickets { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; } 
 }
