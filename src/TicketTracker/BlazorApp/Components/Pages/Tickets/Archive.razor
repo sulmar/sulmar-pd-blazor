@@ -5,11 +5,11 @@
 
 <TicketTableTemplate Tickets="@tickets">
 
-    <RowTemplate>
-        <td>@context.Id</td>
-        <td>@context.Title</td>
-        <td>@context.Status</td>
-        <td>@context.CreatedBy</td>
+    <RowTemplate Context="ticket">
+        <td>@ticket.Id</td>
+        <td>@ticket.Title</td>
+        <td>@ticket.Status</td>
+        <td>@ticket.CreatedBy</td>
     </RowTemplate>
 </TicketTableTemplate>
 
