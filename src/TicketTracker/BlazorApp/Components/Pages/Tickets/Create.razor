@@ -4,7 +4,11 @@
 <SubPageTitle>Create a Ticket</SubPageTitle>
 
 
-<EditForm Model="@ticket" class="mb-6" OnSubmit="OnSubmitAsync">
+<EditForm Model="@ticket" class="mb-6" OnValidSubmit="OnSubmitAsync">
+
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
 
     <div class="form-group">
         <label class="form-label">Title

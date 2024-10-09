@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Domain.Models;
 public class TicketSearchCriteria  : Base
 {
@@ -11,7 +13,10 @@ public class TicketSearchCriteria  : Base
 
 public partial class Ticket : BaseEntity
 {   
+    [Required, MinLength(3), RegularExpression(@"^[Tt]+$")]
     public string Title { get; set; }
+
+    [MinLength(3), MaxLength(200)]
     public string Description { get; set; }
     public DateTime CreatedOn { get; set; }
     public string CreatedBy { get; set; }
