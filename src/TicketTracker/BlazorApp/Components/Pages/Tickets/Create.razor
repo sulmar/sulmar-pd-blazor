@@ -1,6 +1,8 @@
 @page "/tickets/create"
 @rendermode InteractiveServer
 @using Blazored.FluentValidation
+@inject NavigationManager NavigationManager
+@inject ITicketRepository repository
 
 <SubPageTitle>Create a Ticket</SubPageTitle>
 
@@ -39,6 +41,8 @@
     {
         Console.WriteLine($"Create a ticket {ticket.Title} {ticket.Description}");
 
-         ticket = new Ticket();
+        repository.Add(ticket);
+
+        NavigationManager.NavigateTo("/tickets");
     }
 }
