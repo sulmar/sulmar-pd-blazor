@@ -1,24 +1,29 @@
 @page "/tickets/create"
 @rendermode InteractiveServer
+@using Blazored.FluentValidation
 
 <SubPageTitle>Create a Ticket</SubPageTitle>
 
 
 <EditForm Model="@ticket" class="mb-6" OnValidSubmit="OnSubmitAsync">
 
-    <DataAnnotationsValidator />
+    <FluentValidationValidator />
 
-    <ValidationSummary />
+    @* <ValidationSummary /> *@
 
     <div class="form-group">
         <label class="form-label">Title
             <InputText @bind-Value="ticket.Title" class="form-control" />
+
+            <ValidationMessage For="()=>ticket.Title" />
         </label>
     </div>
 
     <div class="form-group">
         <label class="form-label">Description
             <InputTextArea @bind-Value="ticket.Description" class="form-control" />
+
+             <ValidationMessage For="()=>ticket.Description" />
         </label>
 </div>
 
