@@ -1,7 +1,7 @@
 @rendermode InteractiveServer
 
 <div>
-    <label for="filter">Search: </label>
+    <label for="filter"><h3>Search: </h3> </label>
     <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput" 
         @onkeyup="OnKeyUp" @ref="filterInputElementReference" />
 
