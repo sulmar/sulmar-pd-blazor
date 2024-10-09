@@ -1,7 +1,8 @@
+@inject AppState AppState
 
 <CascadingValue Value="@message" Name="a" >
     <CascadingValue Value="@description" Name="b">
-        <CascadingValue Value="@value">
+        <CascadingValue Value="@AppState.Count" Name="count">
             @ChildContent
         </CascadingValue>
     </CascadingValue>
@@ -12,9 +13,7 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    
-    private int value = 40;
-
+ 
     private string message = "Hello World!";
 
     private string description = "Lorem ipsum";

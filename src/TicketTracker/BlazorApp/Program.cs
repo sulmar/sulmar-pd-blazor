@@ -30,6 +30,8 @@ builder.Services.AddScoped<IEnumerable<User>>(_ => new List<User>
     new User { Id = 3, FirstName = "Bob", LastName = "Smith"},    
 });      
 
+builder.Services.AddSingleton<AppState>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

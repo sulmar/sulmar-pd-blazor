@@ -1,0 +1,20 @@
+@page "/counter"
+@rendermode InteractiveServer
+@inject AppState AppState
+
+@AppState.Count
+
+<button class="btn btn-primary" @onclick="@(()=>Increment(2))">Increment</button>
+
+
+<a href="/" class="btn btn-secondary">Go to Home</a>
+
+@code {
+
+    private void Increment(int step)
+    {
+        AppState.Count += step;
+    }
+}
+
+
