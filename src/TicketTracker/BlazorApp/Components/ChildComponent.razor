@@ -1,0 +1,21 @@
+<p>Child Component @Message</p>
+
+<div>
+    @Value
+</div>
+
+
+@Description
+
+
+@code {
+
+    [CascadingParameter]
+    public int Value { get; set; }
+
+    [CascadingParameter(Name = "a")]
+    public string Message { get; set; }
+
+    [CascadingParameter(Name = "b")]
+    public string Description { get; set; }
+}

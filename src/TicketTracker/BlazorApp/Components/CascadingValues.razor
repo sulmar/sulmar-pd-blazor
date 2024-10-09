@@ -1,0 +1,21 @@
+
+<CascadingValue Value="@message" Name="a" >
+    <CascadingValue Value="@description" Name="b">
+        <CascadingValue Value="@value">
+            @ChildContent
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    
+    private int value = 40;
+
+    private string message = "Hello World!";
+
+    private string description = "Lorem ipsum";
+}
