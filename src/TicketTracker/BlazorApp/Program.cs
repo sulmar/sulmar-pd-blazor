@@ -15,11 +15,11 @@ builder.Services.AddScoped<ITicketRepository, FakeTicketRepository>();
 
 builder.Services.AddScoped<IEnumerable<Ticket>>(_ => new List<Ticket>
         {
-            new Ticket { Id = 1, Title = "Lorem", CreatedBy = "John"},
-            new Ticket { Id = 2, Title = "Ipsum", CreatedBy = "Adam"},
-            new Ticket { Id = 3, Title = "Deres", CreatedBy = "Kate" },
-            new Ticket { Id = 4, Title = "Veto", CreatedBy = "Bob" },
-            new Ticket { Id = 5, Title = "Alfa", CreatedBy = "John" },
+            new Ticket { Id = 1, Title = "Lorem", Description="Ipsum", CreatedBy = "John"},
+            new Ticket { Id = 2, Title = "Ipsum", Description="Ipsum",CreatedBy = "Adam"},
+            new Ticket { Id = 3, Title = "Deres", Description="Ipsum",CreatedBy = "Kate" },
+            new Ticket { Id = 4, Title = "Veto",Description="Ipsum", CreatedBy = "Bob" },
+            new Ticket { Id = 5, Title = "Alfa", Description="Ipsum",CreatedBy = "John" },
         });
 
 builder.Services.AddScoped<IUserRepository, FakeUserRepository>();

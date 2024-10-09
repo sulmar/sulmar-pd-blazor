@@ -7,10 +7,13 @@
     <p>Characters Count: @searchText.Length </p>
 </div>
 
-<button type="button" @onclick="Search" class="btn btn-primary">Search</button>
+    <button type="button" @onclick="Search" class="btn btn-primary" disabled=@CantSearch>Search</button>
 
 
 @code {
+
+
+     private bool CantSearch => !(searchText.Length > 0);
      private string searchText = string.Empty;
 
     [Parameter]

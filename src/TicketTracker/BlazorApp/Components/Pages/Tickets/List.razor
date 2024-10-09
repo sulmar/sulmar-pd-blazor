@@ -1,6 +1,8 @@
 @page "/tickets"
 @using Domain.Abstractions
 @rendermode InteractiveServer
+@inject ITicketRepository repository
+
 @* @rendermode InteractiveWebAssembly *@
 
 <h3>Hello Tickets!</h3>
@@ -31,13 +33,24 @@
 
 @code {
 
+    IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();
+
+    string title = "Tickets";
+
     public void Delete()
     {
         Console.WriteLine("Deleted!");
     }
 
+    protected override void OnInitialized()
+    {
+        tickets = repository.GetAll();
+    }
+
     private void Search(string text)
     {
-       Console.WriteLine($"Search Tickets by {text}");
+       Console.WriteLine($"Search Tickets by {text}");  
+
+       tickets = repository.Get(text);
     }
 }

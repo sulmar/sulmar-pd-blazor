@@ -5,20 +5,4 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Components.Pages.Tickets;
 
-public partial class List
-{
-     string title = "Tickets";
-
-    [Inject]
-    public ITicketRepository repository {get; set; }
-
-    IEnumerable<Ticket> tickets = Enumerable.Empty<Ticket>();
-        
-
-    protected override void OnInitialized()
-    {
-        tickets = repository.GetAll();
-
-    }
-}
 
