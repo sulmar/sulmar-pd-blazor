@@ -2,7 +2,8 @@
 
 <div>
     <label for="filter">Search: </label>
-    <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput" @onkeyup="OnKeyUp" />
+    <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput" 
+        @onkeyup="OnKeyUp" @ref="filterInputElementReference" />
 
     <p>Characters Count: @searchText.Length </p>
 </div>
@@ -12,7 +13,7 @@
 
 @code {
 
-
+    private ElementReference filterInputElementReference;
      private bool CantSearch => !(searchText.Length > 0);
      private string searchText = string.Empty;
 
@@ -29,6 +30,14 @@
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
             await Search();
+        }
+    }
+
+     protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await filterInputElementReference.FocusAsync();
         }
     }
 
