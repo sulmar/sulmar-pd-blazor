@@ -1,0 +1,35 @@
+@page "/tickets/create"
+@rendermode InteractiveServer
+
+<SubPageTitle>Create a Ticket</SubPageTitle>
+
+
+<EditForm Model="@ticket" class="mb-6" OnSubmit="OnSubmitAsync">
+
+    <div class="form-group">
+        <label class="form-label">Title
+            <InputText @bind-Value="ticket.Title" class="form-control" />
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Description
+            <InputTextArea @bind-Value="ticket.Description" class="form-control" />
+        </label>
+</div>
+
+ <button type="submit" class="btn btn-primary">Submit</button>
+
+</EditForm>
+
+@code {
+
+    Ticket ticket = new Ticket();
+
+    private async Task OnSubmitAsync()
+    {
+        Console.WriteLine($"Create a ticket {ticket.Title} {ticket.Description}");
+
+         ticket = new Ticket();
+    }
+}
