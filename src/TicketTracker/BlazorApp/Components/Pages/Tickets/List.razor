@@ -7,14 +7,7 @@
 
 <p>Jestes na stronie @title</p>
 
-<div>
-    <label for="filter">Search: </label>
-    <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput"  />
-
-    <p>Characters Count: @searchText?.Length </p>
-</div>
-
-<button type="button" @onclick="Search" class="btn btn-primary">Search</button>
+<SearchBar OnSearch="Search" />
 
 <EntityTableTemplate Entities="@tickets"  >
 
@@ -38,16 +31,13 @@
 
 @code {
 
-    private string searchText;
-
     public void Delete()
     {
         Console.WriteLine("Deleted!");
     }
 
-    private void Search()
+    private void Search(string text)
     {
-        Console.WriteLine($"Search {searchText}");
+       Console.WriteLine($"Search Tickets by {text}");
     }
 }
-

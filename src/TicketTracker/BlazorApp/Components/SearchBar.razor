@@ -1,0 +1,25 @@
+@rendermode InteractiveServer
+
+<div>
+    <label for="filter">Search: </label>
+    <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput"  />
+
+    <p>Characters Count: @searchText.Length </p>
+</div>
+
+<button type="button" @onclick="Search" class="btn btn-primary">Search</button>
+
+
+@code {
+     private string searchText = string.Empty;
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private async Task Search()
+    {
+        await OnSearch.InvokeAsync(searchText);
+    }
+
+   
+}

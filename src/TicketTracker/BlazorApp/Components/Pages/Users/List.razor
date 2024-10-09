@@ -1,8 +1,11 @@
 @page "/users"
 @inject IUserRepository repository
+@rendermode InteractiveServer
 
 
 <h3>Users</h3>
+
+<SearchBar OnSearch="Search" />
 
 <EntityTableTemplate Entities="@users">
     <RowTemplate Context="user">
@@ -18,6 +21,12 @@
     protected override void OnInitialized()
     {
         users = repository.GetAll();
+    }
+
+    private void Search(string text)
+    {
+        Console.WriteLine($"Search users by {text}");
+
     }
 
 }
