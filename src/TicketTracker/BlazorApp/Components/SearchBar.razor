@@ -2,7 +2,7 @@
 
 <div>
     <label for="filter">Search: </label>
-    <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput"  />
+    <input type="text" id="filter" @bind-value="searchText" @bind-value:event="oninput" @onkeyup="OnKeyUp" />
 
     <p>Characters Count: @searchText.Length </p>
 </div>
@@ -22,6 +22,14 @@
     private async Task Search()
     {
         await OnSearch.InvokeAsync(searchText);
+    }
+
+    private async Task OnKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await Search();
+        }
     }
 
    
