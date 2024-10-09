@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+    .AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents(); //dotnet add package Microsoft.AspNetCore.Components.WebAssembly.Server
 
 
 builder.Services.AddScoped<ITicketRepository, FakeTicketRepository>();
@@ -45,7 +46,8 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode();
 
 
 app.MapGet("/api/users", (IUserRepository repository) => repository.GetAll() );
