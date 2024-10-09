@@ -1,11 +1,12 @@
 @page "/tickets"
 @using Domain.Abstractions
+@* @rendermode InteractiveServer *@
 
 <h3>Hello Tickets!</h3>
 
 <p>Jestes na stronie @title</p>
 
-<EntityTableTemplate Entities="@tickets" >
+<EntityTableTemplate Entities="@tickets"  >
 
     <HeaderTemplate>
         <th>Title</th>
@@ -20,7 +21,7 @@
         <td>@context.CreatedBy</td>
         <td>
             <a class="btn btn-primary" href="/tickets/@context.Id">View</a>
-            <button class="btn btn-danger" @onclick=@(()=>Console.WriteLine("a"))>Delete</button>
+            <button class="btn btn-danger" @onclick="Delete">Delete</button>
         </td>
 </RowTemplate>
 </EntityTableTemplate>
