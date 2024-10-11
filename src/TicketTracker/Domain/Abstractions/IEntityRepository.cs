@@ -7,4 +7,5 @@ public interface IEntityRepository<TEntity>
 {
       IEnumerable<TEntity> GetAll();
       TEntity Get(int id);
+      void Add(TEntity entity);
 }
