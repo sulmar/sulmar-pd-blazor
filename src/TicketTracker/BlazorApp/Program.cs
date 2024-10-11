@@ -1,8 +1,10 @@
+using Authorization;
 using BlazorApp.Components;
 using BlazorApp.Services;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -57,7 +59,16 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(options => 
 {
     options.FallbackPolicy = options.DefaultPolicy;
+
+    options.AddPolicy("VIP", builder => builder
+        .RequireAuthenticatedUser()
+        .RequireClaim("scope", "ticket-tracker")
+        .RequireRole("foo")
+        );
 });
+
+
+builder.Services.AddTransient<IClaimsTransformation, CustomClaimsTransformation>();
 
 var app = builder.Build();
 

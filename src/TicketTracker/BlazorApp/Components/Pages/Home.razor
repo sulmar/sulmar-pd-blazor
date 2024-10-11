@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 
 <PageTitle>Home</PageTitle>
 
@@ -11,12 +12,17 @@ Welcome to your new app.
 
 <a href="/counter" class="btn btn-primary">Go to Counter</a>
         
-<AuthorizeView>
+<AuthorizeView Policy="VIP">
     <Authorized>
-        <div>You are authorized.</div>
+        <div>You are authorized. @context.User.Identity?.Name @context.User.Identity?.IsAuthenticated @context.User.Identity?.AuthenticationType</div>
+    
+         <strong>@context.User.Claims.First(c=>c.Type == ClaimTypes.Name).Value</strong>
+
+           <strong>@context.User.Claims.FirstOrDefault(c=>c.Type == "foo")?.Value</strong>
+
     </Authorized>
     <NotAuthorized>
-        <div>You are not authorized.</div>
+        <div>You are not authorized. </div>
     </NotAuthorized>
 
 </AuthorizeView>
