@@ -1,4 +1,5 @@
 using BlazorApp.Components;
+using BlazorApp.Services;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
@@ -45,6 +46,8 @@ Console.WriteLine(npbApi);
 string baseAddress = builder.Configuration["BaseAddress"];
 
 builder.Services.AddScoped(sp=>new HttpClient { BaseAddress = new Uri(baseAddress)});
+
+builder.Services.AddScoped<UserApiService>();
 
 var app = builder.Build();
 
