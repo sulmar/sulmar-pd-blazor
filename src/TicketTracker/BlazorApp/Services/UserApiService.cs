@@ -1,21 +1,11 @@
 using Domain.Models;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services;
+
+public class UserApiService(HttpClient client)
 {
-    public class UserApiService
-    {
-        private HttpClient client;
-
-        public UserApiService(HttpClient client)
-        {
-            this.client = client;
-        }
-
-        public async Task<IEnumerable<User>> GetAllAsync()
-        {
-            return await client.GetFromJsonAsync<IEnumerable<User>>("api/users");
-        }
-    }
-
-
+    public async Task<IEnumerable<User>> GetAllAsync() 
+        => await client.GetFromJsonAsync<IEnumerable<User>>("api/users");
 }
+
+
