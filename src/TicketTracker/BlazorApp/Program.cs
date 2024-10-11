@@ -3,6 +3,7 @@ using BlazorApp.Services;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,15 @@ builder.Services.AddScoped(sp=>new HttpClient { BaseAddress = new Uri(baseAddres
 
 builder.Services.AddScoped<UserApiService>();
 
+// dotnet add package Microsoft.AspNetCore.Authentication.Negotiate
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate();
+
+builder.Services.AddAuthorization(options => 
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,6 +73,9 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()

@@ -1,7 +1,8 @@
 @page "/tickets"
-@using Domain.Abstractions
+
 @rendermode InteractiveServer
 @inject ITicketRepository repository
+@attribute [Authorize]
 
 @* @rendermode InteractiveWebAssembly *@
 
