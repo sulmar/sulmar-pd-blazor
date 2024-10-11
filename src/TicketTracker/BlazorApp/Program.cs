@@ -5,6 +5,11 @@ using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("appsettings.json", optional: false);
+builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
+
+// builder.Configuration.AddJsonFile("krzysztof.json", optional: true);
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
@@ -31,6 +36,15 @@ builder.Services.AddScoped<IEnumerable<User>>(_ => new List<User>
 });      
 
 builder.Services.AddSingleton<AppState>();
+
+
+string npbApi = builder.Configuration["NbpApi"];
+
+Console.WriteLine(npbApi);
+
+string baseAddress = builder.Configuration["BaseAddress"];
+
+builder.Services.AddScoped(sp=>new HttpClient { BaseAddress = new Uri(baseAddress)});
 
 var app = builder.Build();
 
