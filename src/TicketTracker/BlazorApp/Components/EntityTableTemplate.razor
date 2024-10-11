@@ -1,29 +1,37 @@
 @typeparam TEntity
 
-<table class="table table-striped">
-    
-    @if(HeaderTemplate is not null)
-    {
-        <thead>
-            <tr>
-                @HeaderTemplate                
-            </tr>
 
-        </thead>
-    }
-
-    <tbody>
-        @foreach(var entity in Entities)
+@if (Entities is not null)
+{
+    <table class="table table-striped">
+        
+        @if(HeaderTemplate is not null)
         {
-            <tr>
-                @RowTemplate(entity)
-             
-            </tr>
+            <thead>
+                <tr>
+                    @HeaderTemplate                
+                </tr>
+
+            </thead>
         }
-    </tbody>
-    <tfoot>
-    </tfoot>
-</table>
+
+        <tbody>
+            @foreach(var entity in Entities)
+            {
+                <tr>
+                    @RowTemplate(entity)
+                
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+}
+else
+{
+    <p>Loading...</p>
+}
 
 @code  {
 

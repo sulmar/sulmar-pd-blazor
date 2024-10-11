@@ -1,5 +1,6 @@
 @page "/users"
 @inject IUserRepository repository
+@inject HttpClient HttpClient
 @rendermode InteractiveServer
 
 
@@ -16,11 +17,11 @@
 
 @code {
 
-    private IEnumerable<User> users;
+    private IEnumerable<User>? users;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        users = repository.GetAll();
+        users = await HttpClient.GetFromJsonAsync<IEnumerable<User>>("api/users");
     }
 
     private void Search(string text)
