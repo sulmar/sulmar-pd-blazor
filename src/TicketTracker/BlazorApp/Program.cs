@@ -1,8 +1,11 @@
+using BlazorApp.BackgroundServices;
 using BlazorApp.Components;
+using BlazorApp.Hubs;
 using BlazorApp.Services;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
+using Microsoft.AspNetCore.SignalR.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +52,16 @@ builder.Services.AddScoped(sp=>new HttpClient { BaseAddress = new Uri(baseAddres
 
 builder.Services.AddScoped<UserApiService>();
 
+builder.Services.AddSignalR();
+
+builder.Services.AddSingleton<HubConnection>(sp => new HubConnectionBuilder()
+        .WithUrl($"{baseAddress}/signalr/messages")
+        .WithAutomaticReconnect()
+        .Build());
+
+
+builder.Services.AddHostedService<MessageBackgroundService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -70,5 +83,7 @@ app.MapRazorComponents<App>()
 
 
 app.MapGet("/api/users", (IUserRepository repository) => repository.GetAll() );
+
+app.MapHub<MessageHub>("/signalr/messages");
 
 app.Run();
