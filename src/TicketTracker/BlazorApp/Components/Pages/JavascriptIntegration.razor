@@ -1,0 +1,35 @@
+﻿@page "/js"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+<h3>Javascript Integration</h3>
+
+<button @onclick="LogToConsole" class="btn btn-primary">Console</button>
+
+<button @onclick="ShowConfirm" class="btn btn-secondary">Show Confirm</button>
+
+@if (@confirmResult)
+{
+    <span>Tak</span>
+}
+else
+{
+    <span>Nie</span>
+}
+
+
+@code {
+
+    private async Task LogToConsole()
+    {
+        await JS.InvokeVoidAsync("console.log", "Hello World!");
+    }
+
+    private bool confirmResult;
+
+    private async Task ShowConfirm()
+    {
+        confirmResult = await JS.InvokeAsync<bool>("confirm", "Are you sure?");
+    }
+
+}
