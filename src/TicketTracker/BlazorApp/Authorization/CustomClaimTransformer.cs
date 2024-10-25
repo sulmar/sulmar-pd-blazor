@@ -19,6 +19,9 @@ public class CustomClaimsTransformation(IUserRepository repository) : IClaimsTra
         newIdentity.AddClaim(new Claim(ClaimTypes.Role, "boo"));
         newIdentity.AddClaim(new Claim(ClaimTypes.Role, "dev"));
 
+        newIdentity.AddClaim(new Claim("Group", "A"));
+        newIdentity.AddClaim(new Claim("Group", "B"));
+
         newIdentity.AddClaim(new Claim("scope", "ticket-tracker"));
 
         principal.AddIdentity(newIdentity);
