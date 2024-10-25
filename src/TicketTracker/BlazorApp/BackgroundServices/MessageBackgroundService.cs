@@ -22,8 +22,8 @@ public class MessageBackgroundService : BackgroundService
             Console.WriteLine("Send message");
 
             // await _hubContext.Clients.All.SendAsync("ReceiveMessage", "Hello World!");
-
-            await _hubContext.Clients.Group("GrupaA").SendAsync("ReceiveMessage", "Hello World!");
+            
+            await _hubContext.Clients.Group("A").SendAsync("ReceiveMessage", "Hello World!");
         }
 
     }

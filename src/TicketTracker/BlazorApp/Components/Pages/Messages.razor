@@ -14,8 +14,16 @@
 </ul>
 
 @code {
-    private List<string> messages = new List<string>();
 
+    // Cykl życia
+    // 1. ctor
+    // 2. OnInitialized OnInitializedAsync
+    // 3. OnAfterRender OnAfterRenderAsync
+    // 4. OnParametersSet OnParametersSetAsync
+    // 5. Dispose DisposeAsync
+
+    private List<string> messages = new List<string>();
+   
     protected override async Task OnInitializedAsync()
     {
         connection.On<string>("ReceiveMessage", async (message) =>
@@ -27,7 +35,6 @@
         });
 
         await connection.StartAsync();
-
     }
 
     public async ValueTask DisposeAsync()
